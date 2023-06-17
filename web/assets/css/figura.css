@@ -1,0 +1,85 @@
+/* Estilo de la imagen principal */
+.zoom-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.zoom-img img {
+  transition: transform 0.3s ease;
+  max-width: 100%;
+  height: auto;
+}
+
+.zoom-img:hover img {
+  transform: scale(1.2);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+/* Estilo de las miniaturas */
+.thumbnail {
+  margin-top: 10px;
+}
+
+.thumbnail img {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* Estilo del precio y la cantidad */
+.price-quantity {
+    width: 100%;
+  margin-top: 20px;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 24px; /* Tamaño de fuente más grande */
+}
+
+.quantity {
+  display: flex; /* Cambiar a un diseño en línea */
+  width: 100%;
+  align-items: center;
+justify-content: center;
+margin-top: 10px;
+}
+
+.quantity input {
+  width: 60px;
+  order: -1; /* Mover el input a la izquierda */
+  margin-right: 10px; /* Añadir un espacio entre el input y el botón */
+}
+
+
+/* Estilo de la cantidad disponible */
+.quantity span {
+  display: block; /* Mostrar en una línea separada */
+  text-align: center; /* Centrar el texto */
+}
+
+#btn-lista-deseos, #btn-compartir {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+#btn-compartir{
+    font-size: 24px;
+}
+
+#btn-deseo {
+  font-size: 24px;
+  color: #000000;
+  transition: color 0.3s ease-in-out;
+}
+
+.text-danger {
+  color: #ff0000 !important;
+}

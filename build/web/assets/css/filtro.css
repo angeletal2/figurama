@@ -1,0 +1,247 @@
+
+/* 
+    Created on : 20 may 2023, 12:29:20
+    Author     : Angel
+*/
+
+.search-container {
+    position: relative;
+}
+
+#lista-resultados {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.resultado-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ccc;
+}
+
+.resultado-item:hover {
+    background-color: #f5f5f5;
+}
+
+.resultado-item img {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.input-busqueda {
+    display: flex;
+    align-items: center;
+}
+
+.input-busqueda input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 5px;
+    margin-right: 10px;
+    outline: none;
+    flex: 1;
+}
+
+.input-busqueda input:focus {
+    border-bottom-color: #007bff;
+}
+
+.input-busqueda button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+#lista-resultados.visible {
+    display: block;
+}
+
+#contenedor-busqueda {
+    justify-content: end;
+}
+
+#contenedor-busqueda-responsive {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    #contenedor-busqueda {
+        display: none !important;
+    }
+
+    #contenedor-busqueda-responsive {
+        display: block !important;
+    }
+
+    .dropdown-menu {
+        text-align: center;
+    }
+
+
+    #loginForm {
+        width: 100%;
+    }
+
+    .botonCatalogoError {
+        margin-left: 2% !important;
+    }
+}
+
+.input-container {
+    display: flex;      
+    align-items: center;
+}
+
+.botonCatalogoError {
+    margin-left: 1%;
+    background-color: #ff6133;
+    color:white;
+    border-radius: 5px;
+    padding:7px;
+}
+
+.botonCatalogoError:hover{
+    background-color: #d94f27;
+    color:white;
+}
+
+.input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    border: none;
+    padding: 5px;
+    outline: none;
+    flex: 1;
+    border: 1px solid black;
+    border-radius: 6px 0 0 6px;
+}
+
+
+#btn-buscar, #btn-buscar-res {
+    padding: 5px 10px;
+    background-color: #ff6133;
+    color: #fff;
+    border: 1px solid  #ff6133;
+    cursor: pointer;
+    border-radius: 0 6px 6px 0 ;
+
+}
+
+#btn-buscar:hover, #btn-buscar-res:hover {
+background-color: #d94f27;
+border-color: #d94f27;
+}
+
+.input-wrapper input:focus{
+    border-color: #ff6133;
+}
+
+@media (max-width: 520px) {
+    #input-busqueda-res{
+        width: 140px;
+    }
+    .search-container {
+        margin-right: 5%;
+    }
+
+    .input-wrapper input {
+
+    }
+
+    .botonCatalogoError {
+        margin-left: 1% !important;
+    }
+
+    .logo-img {
+        margin-right: 0;
+    }
+}
+
+.navbar-brand{
+    margin-right:0 !important;
+}
+
+@media (max-width: 350px) {
+    #input-busqueda-res{
+        width: 100px;
+    }
+}
+
+
+.input-container {
+    position: relative;
+}
+
+#input-field {
+    width: 100%;
+    padding: 10px;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: -4.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.tooltip::after {
+    content:"";
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    margin-left:-5px;
+    border-width:5px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent;
+}
+
+#input-busqueda:focus + .tooltip, #input-busqueda-res:focus + .tooltip{
+    opacity: 1;
+    visibility: visible;
+}
+
+@media(max-width: 1100px){
+    .tooltip{
+        bottom: -6em;
+        text-align: center;
+    }
+}
+
+@media(min-width: 1875px){
+    .tooltip{
+        bottom: -3em;
+        text-align: center;
+    }
+}

@@ -1,0 +1,117 @@
+
+
+a {
+    color: #3498DB;
+    text-decoration: none;
+}
+
+nav {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom: 1px solid #E9E9E9;
+}
+nav ul li {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+nav ul li:hover{
+    color:white;
+    background-color: #F77160;
+}
+
+.active {
+    background-color:#d94f27 !important;
+    color: white;
+}
+
+
+.table {
+    width: auto !important;
+    max-width: 100vw !important;
+    border-collapse: collapse;
+   padding-bottom:3%;
+      padding-top:3%;
+
+}
+
+.table td,
+.table th {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+    word-wrap: break-word;
+    min-width: 80px;
+    max-width: 170px;
+    vertical-align: middle !important;
+
+}
+
+.table th {
+    background-color: #92c9e6;
+    color: #ffffff;
+
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="file"] {
+    display: block;
+    margin-top: 5px;
+}
+
+.img-preview {
+    max-width: 60%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+textarea{
+    height: 200px;
+}
+
+button{
+    cursor:pointer;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    white-space: normal !important;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 767px){
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+      justify-content: center;  
+    }}
+
+.materiales {
+    padding-left: 7vw !important;
+    
+}
+.materiales th,.materiales th{
+        min-width: 120px;
+}
+
+
+.proveedores {
+    padding-left: 4vw !important;
+    
+}
+.proveedores th,.proveedores th{
+        min-width: 120px;
+}

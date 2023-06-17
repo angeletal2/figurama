@@ -1,0 +1,84 @@
+@media screen and (max-width: 576px) {
+  .form-label {
+    font-size: 0.8rem;
+  }
+
+  .form-control,
+  error {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+.mh-100vh {
+  min-height: 100vh;
+}
+
+#login-block {
+  box-shadow: 0px 0px 45px 0px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.password-container {
+  position: relative;
+}
+
+.toggle-password-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 999;
+}
+
+@media (max-width: 992px) {
+  #login-block {
+    opacity: 0.95;
+  }
+
+  #bg-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .w-lg-75 {
+    width: 75%;
+  }
+
+  .rounded-lg-0 {
+    border-radius: 0 !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .w-xl-50 {
+    width: 60%;
+  }
+}
+
+input.error {
+  border: red 3px solid;
+}
+
+@media screen and (max-width: 576px) {
+  .form-group {
+    width: 100%;
+  }
+
+  .form-group input {
+    font-size: 14px;
+  }
+}
+

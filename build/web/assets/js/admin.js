@@ -707,7 +707,7 @@ function mostrarTabla(datos) {
                 var filaHtml = "<tr>";
                 claves.forEach(function (clave) {
                     if (clave === "Dirección") {
-                        if (fila.Dirección === null || typeof fila.Dirección === "undefined") {
+                        if (fila.Dirección === null || typeof fila.Dirección === "undefined" || fila.Dirección.trim() === "") {
                             filaHtml += "<td>Sin dirección registrada</td>";
                         } else {
                             filaHtml += "<td>" + fila.Dirección + "</td>";
@@ -788,9 +788,11 @@ function mostrarTabla(datos) {
                 var email = datos[contador].Email;
                 var direccion = datos[contador].Dirección;
                 var telefono = datos[contador].Teléfono;
-                var rol = datos[contador].rol;
+                var rol = datos[contador].Rol;
+                var contra = datos[contador].Contra;
+
                 var admin = datos[contador].Admin;
-                mostrarModalModificarUsuario(id, nombre, apellidos, email, direccion, telefono, rol, admin);
+                mostrarModalModificarUsuario(id, nombre, apellidos, email, direccion, telefono, rol, admin, contra);
             });
             break;
     }
@@ -1092,25 +1094,25 @@ function mostrarModalBajaUsuario(id, nombre, bajaActual) {
 
 
 
-function mostrarModalModificarUsuario(id, nombre, apellidos, email, direccion, telefono, rol, admin) {
+function mostrarModalModificarUsuario(id, nombre, apellidos, email, direccion, telefono, rol, admin, contra) {
 
 
     $('#usuarioId').val(id);
     $('#usuarioNombre').val(nombre);
     $('#usuarioApellidos').val(apellidos);
     $('#usuarioEmail').val(email);
-        $('#usuarioEmailOld').val(email);
+    $('#usuarioEmailOld').val(email);
 
     $('#usuarioDireccion').val(direccion);
     $('#usuarioTelefono').val(telefono);
     $('#usuarioRol').val(rol);
+    $('#usuarioContrasena').val(contra);
+
 
 
     var selectRol = $('#roles');
     selectRol.empty();
     var option = $("<option></option>").text("Común").val("Común");
-
-
     if (rol === "Común") {
         option.attr("selected", "selected");
     }
@@ -1122,14 +1124,14 @@ function mostrarModalModificarUsuario(id, nombre, apellidos, email, direccion, t
 
     if (admin === "AdminMaestro") {
         if (rol === "Admin") {
-            option.attr("selected", "selected");
+            option2.attr("selected", "selected");
         }
         selectRol.append(option2);
 
         var option3 = $("<option></option>").text("AdminMaestro").val("AdminMaestro");
 
         if (rol === "AdminMaestro") {
-            option.attr("selected", "selected");
+            option3.attr("selected", "selected");
         }
         selectRol.append(option3);
     }
@@ -1331,7 +1333,7 @@ function validarUsuario(accion) {
         validarUsuarioEmail("usuarioEmail", "errorUsuarioEmail");
         validarUsuarioDireccion("usuarioDireccion", "errorUsuarioDireccion");
         validarUsuarioTelefono("usuarioTelefono", "errorUsuarioTelefono");
-
+        validarUsuarioContrasena("usuarioContrasena", "errorUsuarioContrasena");
     } else {
         validarUsuarioNombre("usuarioNombreAdd", "errorUsuarioNombreAdd");
         validarUsuarioApellidos("usuarioApellidosAdd", "errorUsuarioApellidosAdd");
@@ -1359,6 +1361,31 @@ function validarUsuario(accion) {
 
 
 
+
+
+
+function validarUsuarioEditar() {
+    hayError = false;
+    validarUsuarioNombre("usuarioNombreAdd", "errorUsuarioNombreAdd");
+    validarUsuarioApellidos("usuarioApellidosAdd", "errorUsuarioApellidosAdd");
+    validarUsuarioEmail("usuarioEmailAdd", "errorUsuarioEmailAdd");
+
+
+
+
+
+
+
+
+    validarUsuarioTelefono("usuarioTelefonoAdd", "errorUsuarioTelefonoAdd");
+    validarUsuarioContrasena("usuarioContrasenaAdd", "errorUsuarioContrasenaAdd");
+    if (!hayError) {
+        if (validarUsuarioContrasenas("usuarioContrasenaActual", "usuarioContrasenaAdd", "errorUsuarioContrasenaAdd")) {
+            parsearFormulario(document.getElementById("anadirUsuarioForm"));
+            document.getElementById("anadirUsuarioForm").submit();
+        }
+    }
+}
 
 
 
@@ -1998,8 +2025,8 @@ function validarUsuarioDireccion(campo, errorCampo) {
         } else {
             var ultimoValor = partes[3].trim();
             if (!/^\D*\d/.test(ultimoValor)) {
-        errorCampoVal.innerHTML = "El último valor debe contener al menos un número después del guion.";
-      } else {
+                errorCampoVal.innerHTML = "El último valor debe contener al menos un número después del guion.";
+            } else {
                 campoVal.classList.remove("error");
                 errorCampoVal.innerHTML = "";
                 return true;
@@ -2031,6 +2058,35 @@ function validarUsuarioContrasena(campo, errorCampo) {
         errorCampoVal.innerHTML = "Este campo debe tener al menos 5 carácteres.";
     } else if (!/^(?=.*\d)(?=.*[a-zñA-ZÑáéíóúÁÉÍÓÚ])(?=.*[A-ZÁÉÍÓÚÜ])[a-zA-ZñÑáéíóúÁÉÍÓÚ\d]*$/.test(valor)) {
         errorCampoVal.innerHTML = "La contraseña puede contener letras (mayúsculas y minúsculas, incluyendo letras acentuadas y la Ñ), dígitos y caracteres especiales incluyendo al menos al menos <em>un dígito</u> y <em>una letra mayúscula</u>.";
+
+    } else {
+        campoVal.classList.remove("error");
+        errorCampoVal.innerHTML = "";
+        return true;
+    }
+
+    campoVal.classList.add("error");
+    if (!hayError) {
+        campoVal.focus();
+        hayError = true;
+    }
+    return false;
+}
+
+
+
+
+function validarUsuarioContrasenas(campoActual, campo, errorCampo) {
+    var campoActualVal = document.getElementById(campoActual);
+
+    var campoVal = document.getElementById(campo);
+    var errorCampoVal = document.getElementById(errorCampo);
+    var valorActual = campoActualVal.value.trim();
+    var valor = campoVal.value.trim();
+
+
+    if (valorActual !== valor) {
+        errorCampoVal.innerHTML = "Las contraseñas no coinciden.";
 
     } else {
         campoVal.classList.remove("error");

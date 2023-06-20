@@ -84,8 +84,7 @@ function eliminarArticulo(idFigura) {
 function vaciarCesta() {
     var res = confirm("Está seguro/a de que desea vaciar su cesta?");
     if (res) {
-        alert("La cesta se ha vaciado correctamente");
-        vaciarCestaSin();
+        vaciarCestaSin("botonPulsado");
 
 
 
@@ -93,7 +92,7 @@ function vaciarCesta() {
 }
 
 
-function vaciarCestaSin() {
+function vaciarCestaSin(botonPulsado) {
 
 
     var xhr = new XMLHttpRequest();
@@ -101,13 +100,18 @@ function vaciarCestaSin() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 
-            var textoRespuesta = xhr.responseText;
-            if (textoRespuesta === "") {
-                alert("Compra realizada con éxito");
-            } else {
-                alert(xhr.responseText);
-            }
+            if (botonPulsado === "botonNoPulsado") {
 
+                var textoRespuesta = xhr.responseText;
+                if (textoRespuesta === "") {
+                    alert("Compra realizada con éxito");
+                } else {
+                    alert(xhr.responseText);
+                }
+            } else {
+                alert("Su cesta se ha vaciado correctamente");
+
+            }
             window.location.href = "index.jsp";
 
         }
@@ -266,8 +270,14 @@ function comprar() {
     var direccion = pais + " - " + provincia + " - " + municipio + " - " + calle;
 
     var xhr = new XMLHttpRequest();
+    
+    var guardar = document.getElementById("guardarDireccion");
+    var guardarDireccion="no";
+    if(guardar.checked){
+        guardarDireccion="si";
+    }
 
-    xhr.open('GET', `Comprar?direccion=${valorSeguro(direccion)}`, true);
+    xhr.open('GET', `Comprar?direccion=${valorSeguro(direccion)}&&guardar=${guardarDireccion}`, true);
 
 
     xhr.onreadystatechange = function () {
@@ -278,7 +288,7 @@ function comprar() {
 
             var figuras = JSON.parse(xhr.responseText);
             if (figuras.length === 0) {
-                vaciarCestaSin();
+                vaciarCestaSin("botonNoPulsado");
                 window.location.href = "index.jsp";
             } else {
                 ajustarStockFiguras(figuras);
@@ -507,15 +517,6 @@ function validarCalle(e) {
 }
 
 
-
-
-
-
-
-
-
-
-
 function validarFechaCaducidad(e) {
     var fechaCaducidad = document.getElementById("caducidad");
     var errorFechaCaducidad = document.getElementById("errorCaducidad");
@@ -596,4 +597,20 @@ function validarNumeroCuenta(e) {
     }
     e.preventDefault();
     return false;
+}
+
+
+
+function cargarDireccion() {
+    var confirmacion = confirm("¿Está seguro/a de que desea cargar los datos de su dirección almacenada? Perderá lo que tenga escrito actualmente.");
+
+    if (confirmacion) {
+        var direccion = document.getElementById("valorDireccion").innerHTML.split("-");
+
+        document.getElementById("pais").value = direccion[0].trim();
+        document.getElementById("provincia").value = direccion[1].trim();
+        document.getElementById("municipio").value = direccion[2].trim();
+        document.getElementById("calle").value = direccion[3].trim();
+
+    }
 }

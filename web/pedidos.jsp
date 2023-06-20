@@ -16,7 +16,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="icon" type="image/x-icon" href="assets/images/logomini.jpg">
+        <link rel="icon" type="image/x-icon" href="assets/images/logomini.jpg">
 
         <title>Figurama - Pedidos</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -27,8 +27,8 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="assets/css/filtro.css">
 
-        
-    
+
+
 
     </head>
     <body>
@@ -90,12 +90,12 @@
                                         Cuenta
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Ver mis favoritos</a>
+                                        <a class="dropdown-item" href="deseos.jsp">Ver mis favoritos</a>
                                         <a class="dropdown-item" href="#">Ver mis pedidos</a>
                                         <a id="linkAcceso" class="d-none" href="#">Acceder</a>
 
-                                        <a class="dropdown-item" href="#">Editar perfil</a>
-                                            <c:if test="${sessionScope.usuario.rol eq 'Admin' or sessionScope.usuario.rol eq 'AdminMaestro'}">
+                                        <a class="dropdown-item" href="editarPerfil.jsp">Editar perfil</a>
+                                        <c:if test="${sessionScope.usuario.rol eq 'Admin' or sessionScope.usuario.rol eq 'AdminMaestro'}">
                                             <a class="dropdown-item" href="admin">Volver al menú de administración</a>
                                         </c:if>
                                         <a class="dropdown-item" href="CerrarSesion">Cerrar sesión</a>
@@ -143,9 +143,9 @@
                 </li>
             </ol>
 
-            
-            
-            
+
+
+
             <c:if test="${empty pedidos}">
 
                 <div class="cestaVacia text-center">
@@ -160,38 +160,39 @@
             </c:if>
 
             <c:if test="${!empty pedidos}">
-        <div class="container mb-5 text-center table-responsive" style="margin-top:10px; max-width: 80vw;">
-            <h1 class="h1 mb-3">Pedidos de <c:out value="${sessionScope.usuario.nombre}"/></h1>
-                <table class="table table-striped table-bordered table-hover">
-                    <tr>
-                        <th>Numero Pedido</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
-                        <th>Dirección destino</th>
-                        <th>Detalles</th>
-                        <th>Total</th>
-                    </tr>
-                  <c:set var="precioTotal" value="0"/>
-
-                    <c:forEach items="${pedidos}" var="pedido">
+                <div class="container mb-5 text-center table-responsive" style="margin-top:10px; max-width: 80vw;">
+                    <h1 class="h1 mb-3">Pedidos de <c:out value="${sessionScope.usuario.nombre}"/></h1>
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
-                            <td><c:out value="${pedido.id}"/></td>
-                            <td><c:out value="${pedido.fecha}"/></td>
-                            <td><c:out value="${pedido.estado}"/></td>
-                            <td><c:out value="${pedido.direccion}"/></td>
-                            <td>${pedido.precioTotal}€</td>
-
-                            <td><button type="button" class="detallesPedido" data-toggle="modal" data-target="#modalDetallesPedido" onclick='mostrarPedido(${pedido.articulosJson}, ${pedido.id})'>Ver detalles</button></td>
+                            <th>Numero Pedido</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Dirección destino</th>
+                            <th>Detalles</th>
+                            <th>Total</th>
                         </tr>
-                    </c:forEach>
+                        <c:set var="precioTotal" value="0"/>
 
-                </table>
-        </div>
+                        <c:forEach items="${pedidos}" var="pedido">
+                            <tr>
+                                <td><c:out value="${pedido.id}"/></td>
+                                <td><c:out value="${pedido.fecha}"/></td>
+                                <td><c:out value="${pedido.estado}"/></td>
+                                <td><c:out value="${pedido.direccion}"/></td>
+
+                                <td><button type="button" class="detallesPedido" data-toggle="modal" data-target="#modalDetallesPedido" onclick='mostrarPedido(${pedido.articulosJson}, ${pedido.id})'>Ver detalles</button></td>
+                                <td>${pedido.precioTotal}€</td>
+
+                            </tr>
+                        </c:forEach>
+
+                    </table>
+                </div>
             </c:if>
-            
-            
-            
-               <div class="modal fade" id="modalDetallesPedido" tabindex="-1" aria-labelledby="modalDescripcionFiguraLabel" aria-hidden="true">
+
+
+
+            <div class="modal fade" id="modalDetallesPedido" tabindex="-1" aria-labelledby="modalDescripcionFiguraLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -212,14 +213,14 @@
         </div>
         <%@include file="footer.jsp"%>
 
-<script>
+        <script>
             function mostrarPedido(articulos, numero) {
                 var detalles = "";
                 articulos.forEach(function (articulo) {
-                  detalles += "<br>- Nombre Figura: <br>" + articulo.figura.nombre +
-                        "<br>- Cantidad: " + articulo.cantidad +
-                        "<br>- Precio: " + (articulo.precio * articulo.cantidad) +
-                        "€<br>"; // Agregamos dos saltos de línea después de cada artículo
+                    detalles += "<br>- Nombre Figura: <br>" + articulo.figura.nombre +
+                            "<br>- Cantidad: " + articulo.cantidad +
+                            "<br>- Precio: " + (articulo.precio * articulo.cantidad) +
+                            "€<br>"; // Agregamos dos saltos de línea después de cada artículo
                 });
                 $('#pedidoDetallesArticulos').html(detalles);
                 $('#pedidoDetallesNumero').text(" " + numero);

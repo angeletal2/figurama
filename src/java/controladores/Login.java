@@ -73,7 +73,7 @@ public class Login extends HttpServlet {
                             return;
                         }
                     } else {
-                        error = "Su cuenta está dada de baja. Si desea darla de alta contacte a nuestro soporte:<br>Email de contacto: figuramasoporte@gmail.com<br>Teléfono de contacto: 644826846";
+                        error = "Su cuenta está dada de baja. Si desea darla de alta contacte a nuestro soporte:<br>Email de contacto: support@figurama.com<br>Teléfono de contacto: 644826846";
                     }
                 }
             }

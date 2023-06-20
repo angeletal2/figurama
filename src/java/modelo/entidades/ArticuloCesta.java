@@ -39,7 +39,8 @@ public class ArticuloCesta {
     }
     
     public double getPrecioTotal(){
-        return figura.getPrecioConDescuento()*cantidad;
+                return Math.floor(figura.getPrecioConDescuento()*cantidad * 100) / 100;
+
     }
 
     @Override

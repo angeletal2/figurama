@@ -47,9 +47,11 @@ public class Comprar extends HttpServlet {
         } else {
             idUsuario = usuario.getId();
         }
+        
+        String direccion = request.getParameter("direccion");
 
         
-        List<Figura> figuras = cdao.comprar(cesta, idUsuario, request.getParameter("direccion"));
+        List<Figura> figuras = cdao.comprar(cesta, idUsuario, direccion);
         //Si la lista está vacía es que no se ha podido realizar la compra así que se le guarda la cesta con los stocks maximos de cada articulo
         if (!figuras.isEmpty()) {
 
@@ -69,6 +71,14 @@ public class Comprar extends HttpServlet {
             if (usuario != null) {
                 cdao.guardarCesta(cesta.getArticulos(), usuario.getId());
             }
+        }else{
+            String guardar=request.getParameter("guardar");
+            if(guardar.equals("si")){
+                UsuarioDAO udao = new UsuarioDAO();
+                udao.guardarDireccion(direccion, usuario.getId());
+                usuario.setDireccion(direccion);
+            }
+            
         }
         cdao.cerrarConexion();
         // Convierte la lista de figuras a formato JSON

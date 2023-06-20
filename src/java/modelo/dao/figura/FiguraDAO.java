@@ -402,6 +402,7 @@ public class FiguraDAO {
                 figura = new Figura(rs.getInt("id"), rs.getString("nombre"), rs.getString("descripcion"), rs.getDate("fechaSalida"), rs.getDouble("precio"), rs.getInt("stock"), rs.getInt("altura"), rs.getInt("idPersonaje"), rs.getInt("idProveedor"), rs.getInt("descuento"), rs.getInt("idMaterial"), rs.getInt("esBaja"));
                 if (figuraDisponible(figura.getId()) && contador < 5) {
                     figuras.add(figura);
+                    contador++;
                 }
 
             }

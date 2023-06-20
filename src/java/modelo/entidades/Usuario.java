@@ -16,7 +16,6 @@ public class Usuario {
     private String rol;
     private int esBaja;
 
-    
     // Constructor vacio, se usa a la hora de guardar un usuario
     public Usuario() {
     }
@@ -29,11 +28,10 @@ public class Usuario {
         this.direccion = direccion;
         this.telefono = telefono;
         this.rol = rol;
-        this.esBaja= esBaja;
+        this.esBaja = esBaja;
     }
-    
-    // Constructor usado a la hora de guardar un usuario en la BD
 
+    // Constructor usado a la hora de guardar un usuario en la BD
     public Usuario(int id, String nombre, String apellidos, String contra, String email, String direccion, String telefono, String rol, int esBaja) {
         this.id = id;
         this.nombre = nombre;
@@ -43,7 +41,7 @@ public class Usuario {
         this.direccion = direccion;
         this.telefono = telefono;
         this.rol = rol;
-        this.esBaja=esBaja;
+        this.esBaja = esBaja;
     }
 
     public int getId() {
@@ -94,6 +92,38 @@ public class Usuario {
         this.direccion = direccion;
     }
 
+    public String getPais() {
+        if (direccion !=null && !direccion.isEmpty()) {
+            return direccion.split("-")[0].trim();
+        } else {
+            return "";
+        }
+    }
+    
+    public String getProvincia() {
+        if (direccion !=null && !direccion.isEmpty()) {
+            return direccion.split("-")[1].trim();
+        } else {
+            return "";
+        }
+    }
+    
+    public String getMunicipio() {
+        if (direccion !=null && !direccion.isEmpty()) {
+            return direccion.split("-")[2].trim();
+        } else {
+            return "";
+        }
+    }
+    
+    public String getCalle() {
+        if (direccion !=null && !direccion.isEmpty()) {
+            return direccion.split("-")[3].trim();
+        } else {
+            return "";
+        }
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -101,7 +131,6 @@ public class Usuario {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
 
     public String getRol() {
         return rol;
@@ -118,6 +147,5 @@ public class Usuario {
     public void setEsBaja(int esBaja) {
         this.esBaja = esBaja;
     }
-    
-    
-}    
+
+}

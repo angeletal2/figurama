@@ -17,12 +17,12 @@ body {
 }
 
 .toggle-password-icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-   z-index: 999; 
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 999;
 }
 
 
@@ -246,6 +246,12 @@ a:hover {
     position: relative;
 }
 
+.custom-width {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
 .input-busqueda input[type="text"] {
     width: 200px;
     padding: 8px;
@@ -278,11 +284,17 @@ a:hover {
         padding-right: auto;
         padding-left: auto;
     }
+
+
 }
 
 
 /* Estilos del nav en versión responsive */
 @media (max-width: 767px) {
+
+    .custom-width{
+        width: 90%;
+    }
     #navbarCollapse {
     }
 
@@ -409,7 +421,7 @@ a:hover{
         max-width:24%;
 
     }
-  
+
 }
 @media (min-width:992px){
     .flex-item{
@@ -445,7 +457,7 @@ a:hover{
 .flex-item.proveedores:hover{
     transform: none;
     box-shadow: none;
-            cursor: default !important;
+    cursor: default !important;
 
 }
 
@@ -536,15 +548,15 @@ h1, h2, h3, h4, h5, .h1{
         max-width: 100% !important;
         padding: 0 20% !important;
     }
-    
+
     .columnaIzquierda img{
-           width: 90%;
+        width: 90%;
         height: 90%;
-                padding-bottom: 10px !important; 
+        padding-bottom: 10px !important;
 
     }
-    
-   
+
+
 }
 
 
@@ -554,7 +566,7 @@ h1, h2, h3, h4, h5, .h1{
         max-width: 100% !important;
         height: auto;
     }
-    
+
     .columnaIzquierda img{
         width: 90%;
         height: 90%;
@@ -563,6 +575,6 @@ h1, h2, h3, h4, h5, .h1{
 
 
 #btn-buscar, #btn-buscar-res {
-padding: 9px 10px;
+    padding: 9px 10px;
 }
 

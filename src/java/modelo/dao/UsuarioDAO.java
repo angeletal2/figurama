@@ -93,8 +93,8 @@ public class UsuarioDAO {
     public boolean usuarioExiste(String email) {
         boolean res = true;
         try {
-            PreparedStatement ps = conexion.prepareStatement("SELECT id FROM usuario WHERE email = ?");
-            ps.setString(1, email);
+            PreparedStatement ps = conexion.prepareStatement("SELECT id FROM usuario WHERE LOWER(email) = ?");
+            ps.setString(1, email.toLowerCase());
             ResultSet rs = ps.executeQuery();
             res = rs.next();
 
@@ -108,7 +108,7 @@ public class UsuarioDAO {
     public boolean anadirUsuario(Usuario usuario) {
         boolean resultado = false;
 
-        String sql = "INSERT INTO usuario (nombre, apellidos, contrasena, email, direccion,telefono, rol) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO usuario (nombre, apellidos, contrasena, email, direccion,telefono, rol, esBaja) VALUES (?, ?, ?, ?, ?, ?, ?,0)";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, usuario.getNombre());
@@ -132,9 +132,21 @@ public class UsuarioDAO {
             ps.setString(1, direccion);
             ps.setInt(2, id);
 
-            System.out.println("a");
             ps.executeUpdate();
-            System.out.println(ps.executeUpdate());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void modificarContrasena(int id, String contrasena) {
+        String sql = "UPDATE usuario SET contrasena = ? WHERE id = ?";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, contrasena);
+            ps.setInt(2, id);
+
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -144,7 +156,7 @@ public class UsuarioDAO {
     // Método para actualizar un usuario existente
     public boolean actualizarUsuario(Usuario usuario) {
         boolean resultado = false;
-        String sql = "UPDATE usuario SET nombre = ?, apellidos = ?, email = ?, direccion = ?, telefono = ?, rol = ? WHERE id = ?";
+        String sql = "UPDATE usuario SET nombre = ?, apellidos = ?, email = ?, direccion = ?, telefono = ?, rol = ?, contrasena = ? WHERE id = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, usuario.getNombre());
@@ -153,7 +165,8 @@ public class UsuarioDAO {
             ps.setString(4, usuario.getDireccion());
             ps.setString(5, usuario.getTelefono());
             ps.setString(6, usuario.getRol());
-            ps.setInt(7, usuario.getId());
+            ps.setString(7, usuario.getContra());
+            ps.setInt(8, usuario.getId());
 
             resultado = ps.executeUpdate() > 0;
 
@@ -162,13 +175,28 @@ public class UsuarioDAO {
         }
         return resultado;
     }
-    
-     public void cambiarEstado(int idUsuario, int valorNuevo) {
+
+    public void cambiarEstado(int idUsuario, int valorNuevo) {
         String sql = "UPDATE usuario SET esBaja = ? WHERE id = ?";
 
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, valorNuevo);
+            ps.setInt(2, idUsuario);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void guardarDireccion(String direccion, int idUsuario) {
+        String sql = "UPDATE usuario SET direccion = ? WHERE id = ?";
+
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, direccion);
             ps.setInt(2, idUsuario);
 
             ps.executeUpdate();

@@ -832,8 +832,18 @@
                                 <p class="text-center w-100 text-danger" id="errorUsuarioTelefono"></p>
 
                             </div>
+                            <c:if test="${sessionScope.usuario.rol eq 'AdminMaestro'}">  
 
+                                <div class="form-group">
+                                    <label for="nombre">Contraseña</label>
+                                    <input type="password" class="form-control" id="usuarioContrasena" name="usuarioContrasena">
+                                    <p class="text-center w-100 text-danger" id="errorUsuarioContrasena"></p>
+                                </div>
+                            </c:if>
+                                                            <c:if test="${sessionScope.usuario.rol eq 'Admin'}">  
 
+                                <input type="hidden" class="form-control" id="usuarioContrasena" name="usuarioContrasena">
+                            </c:if>
 
                             <div class="form-group">
                                 <label for="serie">Rol</label>
@@ -902,9 +912,9 @@
                                 <p class="text-center w-100 text-danger" id="errorUsuarioTelefonoAdd"></p>
 
                             </div>
-                            
-                            
-                             <div class="form-group">
+
+
+                            <div class="form-group">
                                 <label for="nombre">Contraseña</label>
                                 <input type="text" class="form-control" id="usuarioContrasenaAdd" name="usuarioContrasena">
                                 <p class="text-center w-100 text-danger" id="errorUsuarioContrasenaAdd"></p>

@@ -53,14 +53,14 @@
                         <a href="index.jsp"><img src="assets/images/logo.jpg" alt="alt" class="img-fluid d-flex"/></a>
                         <form class="align-items-center" action="login" method="post">
                             <div class="form-group mb-3"><label class="form-label">Email</label><input class="form-control" type="email" name="email" value="${email}"></div>
-                                <div class="form-group mb-3 password-container">
-                                    <label class="form-label">Contraseña</label>
-                                    <div class="input-group">
-                                        <input class="form-control" id="contra" type="password" name="contra">
-                                        <i id="togglePassword" class="fas fa-eye toggle-password-icon"></i>
-                                    </div>
+                            <div class="form-group mb-3 password-container">
+                                <label class="form-label">Contraseña</label>
+                                <div class="input-group">
+                                    <input class="form-control" id="contra" type="password" name="contra">
+                                    <i id="togglePassword" class="fas fa-eye toggle-password-icon"></i>
                                 </div>
-                                <p class="text-center w-100 text-danger" id="errorContra"></p>
+                            </div>
+                            <p class="text-center w-100 text-danger" id="errorContra"></p>
 
 
 
@@ -75,6 +75,7 @@
                         </form>
 
                         <a class="btn btn-primary mt-2 p-2" href="register.jsp">¿Eres nuevo/a? Regístrate aquí</a>
+                        <a class="link-primary text-center mt-2" style="cursor: pointer" onclick="alert('Para recuperar su contraseña, envíe un email desde su correo registrado al siguiente correo explicando su situación o llame/escriba al siguiente teléfono:\n\nEmail de contacto: support@figurama.com\nTeléfono de contacto: 644826846')">¿Ha olvidado su contraseña?</a>
 
 
                     </div>
@@ -90,25 +91,25 @@
 
         <script>
             var togglePassword = document.getElementById("togglePassword");
-    var passwordInput = document.getElementById("contra");
+            var passwordInput = document.getElementById("contra");
 
-    togglePassword.addEventListener('click', function () {
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-        } else {
-            passwordInput.type = "password";
-        }
-        togglePassword.classList.toggle("fa-eye-slash");
-    });
+            togglePassword.addEventListener('click', function () {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                } else {
+                    passwordInput.type = "password";
+                }
+                togglePassword.classList.toggle("fa-eye-slash");
+            });
 
-    // Agrega el siguiente código para evitar que el botón desaparezca cuando está enfocado.
-    passwordInput.addEventListener('focus', function () {
-        togglePassword.style.display = "inline-block";
-    });
+            // Agrega el siguiente código para evitar que el botón desaparezca cuando está enfocado.
+            passwordInput.addEventListener('focus', function () {
+                togglePassword.style.display = "inline-block";
+            });
 
-    passwordInput.addEventListener('blur', function () {
-        togglePassword.style.display = "inline-block";
-    });</script>
+            passwordInput.addEventListener('blur', function () {
+                togglePassword.style.display = "inline-block";
+            });</script>
 
     </div>
     <c:if test="${not empty cuentaCreada}">

@@ -78,9 +78,9 @@
                                         Cuenta
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Ver mis favoritos</a>
+                                        <a class="dropdown-item" href="../../deseos.jsp">Ver mis favoritos</a>
                                         <a class="dropdown-item" href="../../pedidos">Ver mis pedidos</a>
-                                        <a class="dropdown-item" href="#">Editar perfil</a>
+                                        <a class="dropdown-item" href="../../editarPerfil.jsp">Editar perfil</a>
                                             <c:if test="${sessionScope.usuario.rol eq 'Admin' or sessionScope.usuario.rol eq 'AdminMaestro'}">
                                             <a class="dropdown-item" href="../../admin">Volver al menú de administración</a>
                                         </c:if>
@@ -178,6 +178,10 @@
                                 </article>  
 
                             </c:forEach>
+                                                </div>
+                            <div class="text-center">
+                             <a class="btn btn-primary mt-3" href="../${serieP}">Volver a personajes</a>
+                             </div>
                         </c:if>  
                         <c:if test="${empty figurasP}">     
                             <div class="container">
@@ -186,9 +190,8 @@
                             <a class="btn btn-primary mt-3" href="../${serieP}">Volver a personajes</a>
                     </div>
                 </div>
-                           
+                        </div> 
                         </c:if>
-                    </div>
                 </div></div>
 
 

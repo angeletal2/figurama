@@ -37,6 +37,7 @@ public class VerPedidos extends HttpServlet {
 
         PedidoDAO pddao = new PedidoDAO();
         request.setAttribute("pedidos", pddao.obtenerPedidos(((Usuario) (request.getSession().getAttribute("usuario"))).getId()));
+        pddao.cerrarConexion();
         getServletContext().getRequestDispatcher("/pedidos.jsp").forward(request, response);
 
     }

@@ -216,6 +216,7 @@ public class RellenarTabla extends HttpServlet {
                         nuevoUsuario.put("Teléfono", usuario.getTelefono());
                         nuevoUsuario.put("Rol", usuario.getRol());
                         nuevoUsuario.put("Baja", usuario.getEsBaja());
+                        nuevoUsuario.put("Contra", usuario.getContra());
                         nuevoUsuario.put("Admin", "AdminMaestro");
                         nuevaListaUsuarios.add(nuevoUsuario);
 
@@ -228,6 +229,7 @@ public class RellenarTabla extends HttpServlet {
                         nuevoUsuario.put("Teléfono", usuario.getTelefono());
                         nuevoUsuario.put("Rol", usuario.getRol());
                         nuevoUsuario.put("Baja", usuario.getEsBaja());
+                        nuevoUsuario.put("Contra", usuario.getContra());
                         nuevoUsuario.put("Admin", "Admin");
                         nuevaListaUsuarios.add(nuevoUsuario);
                     }
@@ -244,6 +246,8 @@ public class RellenarTabla extends HttpServlet {
         pjdao.cerrarConexion();
         mdao.cerrarConexion();
         sdao.cerrarConexion();
+        udao.cerrarConexion();
+        pddao.cerrarConexion();
         // Configura la respuesta como JSON
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -266,7 +270,7 @@ public class RellenarTabla extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         processRequest(request, response);
     }
@@ -282,7 +286,7 @@ public class RellenarTabla extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         processRequest(request, response);
     }

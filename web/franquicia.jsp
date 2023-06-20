@@ -83,9 +83,9 @@
                                         Cuenta
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Ver mis favoritos</a>
+                                        <a class="dropdown-item" href="../deseos.jsp">Ver mis favoritos</a>
                                         <a class="dropdown-item" href="../pedidos">Ver mis pedidos</a>
-                                        <a class="dropdown-item" href="#">Editar perfil</a>
+                                        <a class="dropdown-item" href="../editarPerfil.jsp">Editar perfil</a>
                                             <c:if test="${sessionScope.usuario.rol eq 'Admin' or sessionScope.usuario.rol eq 'AdminMaestro'}">
                                             <a class="dropdown-item" href="../admin">Volver al menú de administración</a>
                                         </c:if>

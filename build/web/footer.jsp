@@ -17,11 +17,11 @@
                     <div class="col-md-4">
                         <h4>Información de contacto</h4>
                         <ul>
-                            <li><i class="fa fa-envelope"></i> figuramainfo@gmail.com</li>
+                            <li><i class="fa fa-envelope"></i> info@figurama.com</li>
                             <li><i class="fa fa-phone"></i> +34 644 82 68 46</li>
                             <div class="location">
                                 <i class="fa fa-map-marker"></i>
-                                <a href="https://www.google.com/maps?q=C.+Sierpes,+50,+41004+Sevilla" target="_blank"> C. Sierpes, 50, 41004 Sevilla</a>
+                                <a href="https://www.google.com/maps?q=Pl.+de+Cuba,+3,+41011+Sevilla" target="_blank">Pl. de Cuba, 3, 41011 Sevilla</a>
                             </div>
 
                         </ul>

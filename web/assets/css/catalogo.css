@@ -721,8 +721,7 @@ a:hover{
     }
     .product-style:hover{
         border:none;
-        box-shadow:0 10px 20px rgba(0,0,0,.2);
-        transform:translateY(-10px);
+      
     }
     .product-list .product-list-wrapper{
         position:relative;
